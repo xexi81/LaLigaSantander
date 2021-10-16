@@ -20,8 +20,6 @@ class DateClass() {
             difference = (it.time - date.time) / 60000
         }
 
-        debugLog(description = "$difference")
-
         return difference
     }
 

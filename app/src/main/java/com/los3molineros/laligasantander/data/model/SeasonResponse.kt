@@ -10,7 +10,7 @@ data class SeasonResponse (
 
 
 data class Query(
-    val apikey: String = "",
+    var apikey: String = "",
     val league_id: String = ""
 )
 

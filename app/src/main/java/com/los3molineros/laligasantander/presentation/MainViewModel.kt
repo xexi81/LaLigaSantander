@@ -13,7 +13,7 @@ class MainViewModel(private val repo: MainRepo): ViewModel() {
         emit(Resource.Loading())
 
         try {
-            emit(Resource.Success(repo.getSeasonId()))
+            emit(Resource.Success(repo.getData()))
         } catch (e: Exception) {
             emit(Resource.Failure(e))
         }
