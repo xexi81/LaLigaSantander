@@ -38,6 +38,7 @@
             android:layout_margin="4dp"/>
 
         <LinearLayout
+            android:id="@+id/llResult"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="#FD5C29"

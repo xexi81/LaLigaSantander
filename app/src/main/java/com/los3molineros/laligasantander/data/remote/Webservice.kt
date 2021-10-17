@@ -2,10 +2,7 @@ package com.los3molineros.laligasantander.data.remote
 
 import com.google.gson.GsonBuilder
 import com.los3molineros.laligasantander.common.AppConstants
-import com.los3molineros.laligasantander.data.model.MatchesResponse
-import com.los3molineros.laligasantander.data.model.SeasonResponse
-import com.los3molineros.laligasantander.data.model.StandingsResponse
-import com.los3molineros.laligasantander.data.model.TeamResponse
+import com.los3molineros.laligasantander.data.model.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -36,6 +33,12 @@ interface Webservice {
         @Query("apikey") apikey: String = AppConstants.API_KEY,
         @Query("season_id") season_id: Int
     ): MatchesResponse
+
+    @GET("matches")
+    suspend fun getMatchById(
+        @Path("match") matchId: Int,
+        @Query("apikey") apikey: String = AppConstants.API_KEY
+    ): MatchResultResponse
 }
 
 object RetrofitClient {

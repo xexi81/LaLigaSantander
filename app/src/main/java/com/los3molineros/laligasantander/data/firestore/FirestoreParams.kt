@@ -71,4 +71,18 @@ class FirestoreParams() {
         return result.toObject(MatchesResponseFirestore::class.java)
     }
 
+    suspend fun getMatchResult(matchId: Int): MatchResultResponse? {
+        val result = db.collection("matchResult").document(matchId.toString()).get().await()
+        return result.toObject(MatchResultResponse::class.java)
+    }
+
+    suspend fun writeMatchResult(matchId: Int, response: MatchResultResponse) {
+        response.matchQuery.apikey = ""
+        db.collection("matchResult").document(matchId.toString()).set(response).await()
+    }
+
+    suspend fun deleteMatchResult(matchId: Int) {
+        db.collection("matchResult").document(matchId.toString()).delete().await()
+    }
+
  }

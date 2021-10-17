@@ -10,7 +10,7 @@ data class TeamResponse(
 )
 
 data class TeamQuery(
-    val apikey: String = ""
+    var apikey: String = ""
 )
 
 data class Team(
