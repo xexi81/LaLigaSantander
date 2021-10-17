@@ -29,6 +29,8 @@ class FirestoreParams() {
         db.collection("params").document("param").update("lastMatchCheck", DateClass().getUTCDate())
     }
 
+
+
     suspend fun deleteStandings(seasonId: Int) {
         db.collection("standings").document(seasonId.toString()).delete().await()
     }
@@ -42,6 +44,8 @@ class FirestoreParams() {
         return result.toObject(DataStandings::class.java)
     }
 
+
+
     suspend fun getTeam(team: Int): Team? {
         val result = db.collection("teams").document(team.toString()).get().await()
         return result.toObject(Team::class.java)
@@ -51,6 +55,8 @@ class FirestoreParams() {
         db.collection("teams").document(team.team_id.toString()).set(team).await()
     }
 
+
+
     suspend fun deleteMatches(seasonId: Int) {
         db.collection("matches").document(seasonId.toString()).delete().await()
     }
@@ -58,6 +64,11 @@ class FirestoreParams() {
     suspend fun writeMatches(seasonId: Int, response: MatchesResponse) {
         response.query.apikey = ""
         db.collection("matches").document(seasonId.toString()).set(response).await()
+    }
+
+    suspend fun getMatches(seasonId: Int): MatchesResponseFirestore? {
+        val result = db.collection("matches").document(seasonId.toString()).get().await()
+        return result.toObject(MatchesResponseFirestore::class.java)
     }
 
  }

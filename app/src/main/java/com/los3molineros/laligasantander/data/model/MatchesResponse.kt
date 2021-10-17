@@ -1,12 +1,14 @@
 package com.los3molineros.laligasantander.data.model
 
-import com.google.gson.annotations.SerializedName
-
 data class MatchesResponse(
     val query: Query = Query(),
     val data: List<Match> = listOf()
 )
 
+data class MatchesResponseFirestore(
+    val query: Query = Query(),
+    val data: List<MatchFirestore> = listOf()
+)
 
 data class Match(
     val match_id: Int = 0,
@@ -26,6 +28,25 @@ data class Match(
     val venue: Venue = Venue(),
 )
 
+data class MatchFirestore(
+    val match_id: Int = 0,
+    val status_code: Int = 0,
+    val status: String = "",
+    val match_start: String = "",
+    val match_start_iso: String = "",
+    val minute: Int = 0,
+    val league_id: Int = 0,
+    val season_id: Int = 0,
+    val stage: Stage = Stage(),
+    val group: Group = Group(),
+    val round: RoundFirestore = RoundFirestore(),
+    val home_team: Team = Team(),
+    val away_team: Team = Team(),
+    val stats: Stats = Stats(),
+    val venue: Venue = Venue(),
+)
+
+
 data class Stage(
     val stage_id: Int = 0,
     val name: String = ""
@@ -41,6 +62,13 @@ data class Round(
     val name: String = "",
     val is_current: Int? = null
 )
+
+data class RoundFirestore(
+    val round_id: Int = 0,
+    val name: String = "",
+    val _current: Int? = null
+)
+
 
 data class Stats(
     val home_score: Int = 0,

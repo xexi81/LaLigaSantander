@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LaLigaSantander</string>
+    <string name="standing">Clasificación</string>
+    <string name="results">Resultados</string>
+    <string name="round">Jornada</string>
+    <string name="j">J</string>
+    <string name="pj">PJ</string>
+    <string name="pt">Ptos</string>
+    <string name="pg">PG</string>
+    <string name="pe">PE</string>
+    <string name="pp">PP</string>
+    <string name="postponed">Aplazado</string>
+    <string name="inplay">En juego</string>
+    <string name="ended">Finalizado</string>
 </resources>

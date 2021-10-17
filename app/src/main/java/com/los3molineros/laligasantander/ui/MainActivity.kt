@@ -1,5 +1,6 @@
 package com.los3molineros.laligasantander.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -16,6 +17,7 @@ import com.los3molineros.laligasantander.databinding.ActivityMainBinding
 import com.los3molineros.laligasantander.domain.MainRepoImpl
 import com.los3molineros.laligasantander.presentation.MainViewModel
 import com.los3molineros.laligasantander.presentation.MainViewModelFactory
+import com.los3molineros.laligasantander.ui.MainNavigation.MainNavigation
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.txtLiga.visibility = View.VISIBLE
-                    binding.txtLiga.text = it.data.toString()
+                    startActivity(Intent(this, MainNavigation::class.java))
                 }
             }
         })

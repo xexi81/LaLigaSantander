@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/standingFragment"
+        android:icon="@drawable/ic_baseline_format_list_numbered_24"
+        android:title="@string/standing" />
+
+    <item android:id="@+id/resultFragment"
+        android:icon="@drawable/ic_baseline_sports_soccer_24"
+        android:title="@string/results" />
+</menu>
