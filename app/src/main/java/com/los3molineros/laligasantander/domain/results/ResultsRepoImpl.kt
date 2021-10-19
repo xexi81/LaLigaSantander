@@ -1,16 +1,11 @@
 package com.los3molineros.laligasantander.domain.results
 
 import android.content.Context
-import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import com.los3molineros.laligasantander.data.firestore.FirestoreParams
-import com.los3molineros.laligasantander.data.model.Match
 import com.los3molineros.laligasantander.data.model.MatchFirestore
-import com.los3molineros.laligasantander.data.model.MatchesResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class ResultsRepoImpl(private val firestoreParams: FirestoreParams, private val context: Context): ResultsRepo {
+class ResultsRepoImpl(private val firestoreParams: FirestoreParams, private val context: Context) :
+    ResultsRepo {
 
     override suspend fun getResults(round: Int): List<MatchFirestore> {
         val seasonId = firestoreParams.getParams()?.seasonId ?: throw Exception("No data")

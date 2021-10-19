@@ -46,7 +46,6 @@ class StandingFragment : Fragment(R.layout.fragment_standing) {
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     Snackbar.make(binding.root, "${it.exception.message}", BaseTransientBottomBar.LENGTH_LONG).show()
-                    CommonFunctions.debugLog(description = it.exception.message.toString())
                 }
             }
         })

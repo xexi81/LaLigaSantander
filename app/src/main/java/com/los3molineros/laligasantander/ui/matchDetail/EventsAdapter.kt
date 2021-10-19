@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.los3molineros.laligasantander.R
-import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import com.los3molineros.laligasantander.data.model.MatchEvents
 import com.los3molineros.laligasantander.databinding.EventHomeItemBinding
 
@@ -60,6 +59,7 @@ class EventsAdapter(private var matchEventsList: List<MatchEvents>, private val 
                 "injury" -> { binding.ivType.setImageResource(R.drawable.injury)}
                 "redcard" -> { binding.ivType.setImageResource(R.drawable.red_card)}
                 "yellowredcard" -> { binding.ivType.setImageResource(R.drawable.red_card)}
+                "back from injury" -> {binding.ivType.setImageResource(R.drawable.injury_ok)}
             }
         }
     }

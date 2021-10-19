@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">La Liga</string>
+    <string name="standing">Standings</string>
+    <string name="results">Results</string>
+    <string name="round">Round</string>
+    <string name="j">R</string>
+    <string name="pj">MP</string>
+    <string name="pt">Pts</string>
+    <string name="pg">W</string>
+    <string name="pe">D</string>
+    <string name="pp">L</string>
+    <string name="postponed">Delayed</string>
+    <string name="inplay">Inplay</string>
+    <string name="ended">Finished</string>
+</resources>

@@ -9,7 +9,6 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.los3molineros.laligasantander.R
-import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import com.los3molineros.laligasantander.common.Resource
 import com.los3molineros.laligasantander.data.firestore.FirestoreParams
 import com.los3molineros.laligasantander.data.model.MatchResult
@@ -19,7 +18,6 @@ import com.los3molineros.laligasantander.databinding.ActivityMatchDetailBinding
 import com.los3molineros.laligasantander.domain.matchDetail.MatchDetailRepoImpl
 import com.los3molineros.laligasantander.presentation.MatchDetailViewModel
 import com.los3molineros.laligasantander.presentation.MatchDetailViewModelFactory
-import com.los3molineros.laligasantander.ui.standings.StandingAdapter
 import com.squareup.picasso.Picasso
 
 class MatchDetailActivity : AppCompatActivity() {
@@ -92,10 +90,6 @@ class MatchDetailActivity : AppCompatActivity() {
 
     private fun loadUI(data: MatchResult) {
         // header
-        debugLog(description = data.match_id.toString())
-        debugLog(description = data.home_team.logo)
-        debugLog(description = data.away_team.logo)
-
         Picasso.get().load(data.home_team.logo).into(binding.ivHomeLogo)
         Picasso.get().load(data.away_team.logo).into(binding.ivAwayLogo)
         binding.txtHomeTeam.text = data.home_team.short_code

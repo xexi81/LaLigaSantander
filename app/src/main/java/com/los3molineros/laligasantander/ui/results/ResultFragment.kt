@@ -9,7 +9,6 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.los3molineros.laligasantander.R
 import com.los3molineros.laligasantander.common.CommonFunctions
-import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import com.los3molineros.laligasantander.common.Resource
 import com.los3molineros.laligasantander.data.firestore.FirestoreParams
 import com.los3molineros.laligasantander.databinding.FragmentResultBinding
@@ -52,7 +51,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                 is Resource.Loading -> {
                 }
                 is Resource.Success -> {
-                    debugLog(description = "maxRound is ${it.data}")
                     maxRound = it.data
                 }
                 is Resource.Failure -> {
@@ -61,7 +59,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                         "${it.exception.message}",
                         BaseTransientBottomBar.LENGTH_LONG
                     ).show()
-                    CommonFunctions.debugLog(description = it.exception.message.toString())
                 }
             }
         })
@@ -73,7 +70,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                 is Resource.Success -> {
 
                     round = it.data
-                    debugLog(description = "round is $round")
 
                     initHeader()
                     initListeners()
@@ -84,7 +80,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                         "${it.exception.message}",
                         BaseTransientBottomBar.LENGTH_LONG
                     ).show()
-                    CommonFunctions.debugLog(description = it.exception.message.toString())
                 }
             }
         })
@@ -121,7 +116,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                     binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
-                    debugLog(description = it.data.toString())
                     binding.progressBar.visibility = View.GONE
 
                     adapter.setResults(it.data)
@@ -134,7 +128,6 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                         "${it.exception.message}",
                         BaseTransientBottomBar.LENGTH_LONG
                     ).show()
-                    CommonFunctions.debugLog(description = it.exception.message.toString())
                 }
             }
         })
