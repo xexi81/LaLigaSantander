@@ -18,9 +18,9 @@ class MatchDetailRepoImpl(
         }
 
         result.matchesList.let {
-            if (it[0].status_code == 1 || it[0].status_code == 11 || it[0].status_code == 12 || it[0].status_code == 13 || it[0].status_code == 14 || it[0].status_code == 15) {
+            if (it.status_code != 3) {
                 val newResult = dataWSSource.getMatchById(matchId)
-                newResult?.let {matchResult ->
+                newResult.let { matchResult ->
                     firestoreParams.deleteMatchResult(matchId)
                     firestoreParams.writeMatchResult(matchId, matchResult)
                     return matchResult

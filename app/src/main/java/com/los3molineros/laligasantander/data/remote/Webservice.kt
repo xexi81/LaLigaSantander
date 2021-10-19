@@ -34,7 +34,7 @@ interface Webservice {
         @Query("season_id") season_id: Int
     ): MatchesResponse
 
-    @GET("matches")
+    @GET("matches/{match}")
     suspend fun getMatchById(
         @Path("match") matchId: Int,
         @Query("apikey") apikey: String = AppConstants.API_KEY

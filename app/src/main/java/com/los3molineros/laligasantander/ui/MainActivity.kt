@@ -11,8 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import com.los3molineros.laligasantander.common.Resource
 import com.los3molineros.laligasantander.data.firestore.FirestoreParams
-import com.los3molineros.laligasantander.data.remote.RetrofitClient
 import com.los3molineros.laligasantander.data.remote.ApiDataSource
+import com.los3molineros.laligasantander.data.remote.RetrofitClient
 import com.los3molineros.laligasantander.databinding.ActivityMainBinding
 import com.los3molineros.laligasantander.domain.MainRepoImpl
 import com.los3molineros.laligasantander.presentation.MainViewModel
@@ -22,7 +22,12 @@ import com.los3molineros.laligasantander.ui.MainNavigation.MainNavigation
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainViewModel> {
-        MainViewModelFactory(MainRepoImpl(ApiDataSource(RetrofitClient.webservice), FirestoreParams()))
+        MainViewModelFactory(
+            MainRepoImpl(
+                ApiDataSource(RetrofitClient.webservice),
+                FirestoreParams()
+            )
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +45,11 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     binding.txtLiga.visibility = View.GONE
-                    Snackbar.make(binding.root, "${it.exception.message}", BaseTransientBottomBar.LENGTH_LONG).show()
+                    Snackbar.make(
+                        binding.root,
+                        "${it.exception.message}",
+                        BaseTransientBottomBar.LENGTH_LONG
+                    ).show()
                     debugLog(description = it.exception.message.toString())
                 }
                 is Resource.Success -> {
