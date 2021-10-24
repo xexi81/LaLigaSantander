@@ -90,6 +90,7 @@ class MatchDetailActivity : AppCompatActivity() {
 
     private fun loadUI(data: MatchResult) {
         // header
+        //debugLog(description = "matchid: ${data.match_id}")
         Picasso.get().load(data.home_team.logo).into(binding.ivHomeLogo)
         Picasso.get().load(data.away_team.logo).into(binding.ivAwayLogo)
         binding.txtHomeTeam.text = data.home_team.short_code

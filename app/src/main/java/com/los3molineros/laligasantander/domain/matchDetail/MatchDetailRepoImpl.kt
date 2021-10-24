@@ -18,7 +18,7 @@ class MatchDetailRepoImpl(
         }
 
         result.matchesList.let {
-            if (it.status_code != 3) {
+            if (it.status_code != 3 || it.minute!=90) {
                 val newResult = dataWSSource.getMatchById(matchId)
                 newResult.let { matchResult ->
                     firestoreParams.deleteMatchResult(matchId)
