@@ -33,6 +33,7 @@ class StandingAdapter(private var standingList: List<StandingsUI>): RecyclerView
             binding.txtName.text = standing.team?.name
             Picasso.get().load(standing.team?.logo).into(binding.ivShield)
             binding.txtPoints.text = standing.standing.points.toString()
+            binding.txtPlayed.text = standing.standing.overall.games_played.toString()
         }
     }
 }

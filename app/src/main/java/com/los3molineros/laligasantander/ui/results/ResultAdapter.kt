@@ -11,6 +11,7 @@ import com.los3molineros.laligasantander.R
 import com.los3molineros.laligasantander.common.CommonFunctions.blink
 import com.los3molineros.laligasantander.common.CommonFunctions.formatTo
 import com.los3molineros.laligasantander.common.CommonFunctions.toDate
+import com.los3molineros.laligasantander.common.DateClass
 import com.los3molineros.laligasantander.data.model.MatchFirestore
 import com.los3molineros.laligasantander.databinding.RoundResultItemBinding
 import com.los3molineros.laligasantander.ui.matchDetail.MatchDetailActivity
@@ -71,12 +72,18 @@ class ResultAdapter(private var matchList: List<MatchFirestore>?) :
             }
 
             if (match?.status_code == 3 || match?.status_code == 31 || match?.status_code == 32) {
-                binding.txtDate.text = view.context.getString(R.string.ended)
+                if (match.minute == 90) {
+                    binding.txtDate.text = view.context.getString(R.string.ended)
+                }
             }
 
             if (match?.status_code == 3 && match.stats.ft_score == null) {
                 binding.txtResult.text =
                     "${match.stats.home_score.toString()}-${match.stats.away_score}"
+            }
+
+            if (match?.status_code == 3 && match.minute < 90 && DateClass().minutesBetweenNowAndDate(match.match_start.toDate()) > 100 ) {
+                binding.txtDate.text = view.context.getString(R.string.ended)
             }
 
 
@@ -92,6 +99,7 @@ class ResultAdapter(private var matchList: List<MatchFirestore>?) :
                 ) {
                     val intent = Intent(context, MatchDetailActivity::class.java)
                     intent.putExtra("MATCH_ID", match?.match_id)
+                    intent.putExtra("FT_SCORE", match?.stats?.ft_score)
                     context.startActivity(intent)
                 }
             }

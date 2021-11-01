@@ -10,9 +10,9 @@ class MatchDetailViewModel(private val repo: MatchDetailRepo) : ViewModel() {
         MutableLiveData<Resource<com.los3molineros.laligasantander.data.model.MatchResult>>()
     val matchDetail: LiveData<Resource<com.los3molineros.laligasantander.data.model.MatchResult>> get() = _matchDetail
 
-    fun getMatchData(matchId: Int) {
+    fun getMatchData(matchId: Int, ftScore: String?) {
         viewModelScope.launch {
-            _matchDetail.postValue(Resource.Success(repo.getMatchById(matchId).matchesList))
+            _matchDetail.postValue(Resource.Success(repo.getMatchById(matchId, ftScore).matchesList))
         }
     }
 }

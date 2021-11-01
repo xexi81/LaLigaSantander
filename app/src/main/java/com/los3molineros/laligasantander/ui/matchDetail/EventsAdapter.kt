@@ -8,8 +8,8 @@ import com.los3molineros.laligasantander.R
 import com.los3molineros.laligasantander.data.model.MatchEvents
 import com.los3molineros.laligasantander.databinding.EventHomeItemBinding
 
-class EventsAdapter(private var matchEventsList: List<MatchEvents>, private val homeTeam: Int, private val awayTeam: Int): RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
-    fun setEvents(matchEventsList: List<MatchEvents>) {
+class EventsAdapter(private var matchEventsList: List<MatchEvents>?, private val homeTeam: Int?, private val awayTeam: Int?): RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
+    fun setEvents(matchEventsList: List<MatchEvents>?) {
         this.matchEventsList = matchEventsList
         notifyDataSetChanged()
     }
@@ -29,12 +29,12 @@ class EventsAdapter(private var matchEventsList: List<MatchEvents>, private val 
         }
     }
 
-    override fun onBindViewHolder(holder: EventsAdapter.ViewHolder, position: Int) = holder.bind(matchEventsList[position])
+    override fun onBindViewHolder(holder: EventsAdapter.ViewHolder, position: Int) = holder.bind(matchEventsList!![position])
 
-    override fun getItemCount(): Int = matchEventsList.size
+    override fun getItemCount(): Int = matchEventsList?.size ?: 0
 
     override fun getItemViewType(position: Int): Int {
-        return if (matchEventsList[position].team_id == homeTeam) {
+        return if (matchEventsList!![position].team_id == homeTeam) {
             1
         } else 2
     }

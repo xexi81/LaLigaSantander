@@ -19,6 +19,7 @@ class ResultsViewModel(private val repo: ResultsRepo) : ViewModel() {
 
     init {
         viewModelScope.launch {
+            repo.getMatches()
             _round.postValue(Resource.Success(repo.getActualRound()))
             _matchList.postValue(Resource.Success(repo.getResults(repo.getActualRound())))
             _maxRound.postValue(Resource.Success(repo.getMaxRound()))

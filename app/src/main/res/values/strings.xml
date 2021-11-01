@@ -12,4 +12,6 @@
     <string name="postponed">Aplazado</string>
     <string name="inplay">En juego</string>
     <string name="ended">Finalizado</string>
+    <string name="help">Pulsa en el recuadro naranja para ver el detalle de partidos en curso o finalizados</string>
+    <string name="help_standing">PJ: Partidos jugados - Ptos: Puntos</string>
 </resources>

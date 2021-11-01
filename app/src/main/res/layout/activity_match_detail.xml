@@ -59,11 +59,13 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="4">
             <TextView
                 android:id="@+id/txtResult"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textStyle="bold"
@@ -72,7 +74,8 @@
             <TextView
                 android:id="@+id/txtStatus"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/white"
                 tools:text="finished"
@@ -109,6 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llHeader"
+        android:layout_marginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/event_home_item"/>
 

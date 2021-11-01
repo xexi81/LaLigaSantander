@@ -1,6 +1,5 @@
 package com.los3molineros.laligasantander.common
 
-import com.los3molineros.laligasantander.common.CommonFunctions.debugLog
 import java.text.DateFormat
 import java.util.*
 
@@ -22,6 +21,4 @@ class DateClass() {
 
         return difference
     }
-
-
 }

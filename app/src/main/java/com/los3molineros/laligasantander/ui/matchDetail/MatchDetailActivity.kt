@@ -24,6 +24,7 @@ class MatchDetailActivity : AppCompatActivity() {
     lateinit var binding: ActivityMatchDetailBinding
     private lateinit var adapter: EventsAdapter
     private var matchId: Int? = null
+    private var ftScore: String? = null
 
     private val viewModel by viewModels<MatchDetailViewModel> {
         MatchDetailViewModelFactory(
@@ -60,9 +61,10 @@ class MatchDetailActivity : AppCompatActivity() {
     private fun getIntentData() {
         val bundle: Bundle = intent.extras!!
         matchId = bundle.getInt("MATCH_ID")
+        ftScore = bundle.getString("FT_SCORE")
 
         matchId?.let { match ->
-            viewModel.getMatchData(match)
+            viewModel.getMatchData(match, ftScore)
         }
     }
 
@@ -97,7 +99,7 @@ class MatchDetailActivity : AppCompatActivity() {
         binding.txtAwayTeam.text = data.away_team.short_code
         binding.txtResult.text = data.stats.ft_score
 
-        if (data.status_code == 3) {
+        if (data.status_code == 3 && data.minute == 90) {
             binding.txtStatus.text = getString(R.string.ended)
         } else {
             binding.txtStatus.text = "${data.minute.toString()}' "

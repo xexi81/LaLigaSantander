@@ -12,4 +12,6 @@
     <string name="postponed">Delayed</string>
     <string name="inplay">Inplay</string>
     <string name="ended">Finished</string>
+    <string name="help">Click on the match orange box to see details of matches in progress or ended</string>
+    <string name="help_standing">MP: Played match - Pts: Points</string>
 </resources>

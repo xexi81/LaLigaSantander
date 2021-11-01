@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/llItem"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -33,31 +34,48 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_sports_soccer_24"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:layout_margin="4dp"/>
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             tools:text="Real Madrid"
-            android:layout_weight="7"
+            android:layout_weight="6"
             android:layout_gravity="center_vertical"/>
 
+        <TextView
+            android:id="@+id/txtPlayed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="12"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textAlignment="textEnd" />
 
         <TextView
             android:id="@+id/txtPoints"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            tools:text="16"
+            tools:text="14"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textAlignment="textEnd" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llItem"
+        android:background="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

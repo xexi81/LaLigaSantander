@@ -11,6 +11,8 @@ import com.los3molineros.laligasantander.R
 import com.los3molineros.laligasantander.common.CommonFunctions
 import com.los3molineros.laligasantander.common.Resource
 import com.los3molineros.laligasantander.data.firestore.FirestoreParams
+import com.los3molineros.laligasantander.data.remote.ApiDataSource
+import com.los3molineros.laligasantander.data.remote.RetrofitClient
 import com.los3molineros.laligasantander.databinding.FragmentResultBinding
 import com.los3molineros.laligasantander.domain.results.ResultsRepoImpl
 import com.los3molineros.laligasantander.presentation.ResultsViewModel
@@ -22,7 +24,7 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
     private lateinit var adapter: ResultAdapter
 
     private val viewModel by viewModels<ResultsViewModel> {
-        ResultsViewModelFactory(ResultsRepoImpl(FirestoreParams(), requireContext()))
+        ResultsViewModelFactory(ResultsRepoImpl(ApiDataSource(RetrofitClient.webservice),FirestoreParams(), requireContext()))
     }
 
     private var round: Int? = null
@@ -66,6 +68,7 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
         viewModel.round.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Loading -> {
+                    binding.ivHelp.visibility = View.GONE
                 }
                 is Resource.Success -> {
 
@@ -73,8 +76,10 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
 
                     initHeader()
                     initListeners()
+
                 }
                 is Resource.Failure -> {
+                    binding.ivHelp.visibility = View.GONE
                     Snackbar.make(
                         binding.root,
                         "${it.exception.message}",
@@ -156,6 +161,15 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
                 initUI()
             }
 
+        }
+
+        binding.ivHelp.visibility = View.VISIBLE
+        binding.ivHelp.setOnClickListener {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.help),
+                BaseTransientBottomBar.LENGTH_LONG
+            ).show()
         }
     }
 

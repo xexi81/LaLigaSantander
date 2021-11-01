@@ -16,14 +16,8 @@ class MainRepoImpl(
         // SeasonID
         params.seasonId = getSeasonID(params)
 
-        // Standings
-        getStandings(params)
-
         // getTeams
         getTeams(params)
-
-        // getMatchs
-        getMatches(params)
 
         return true
     }
@@ -44,20 +38,6 @@ class MainRepoImpl(
     }
 
 
-    private suspend fun getStandings(params: Params) {
-        // If we never search for standings before, we search it
-        if (params.lastStandingCheck == null) {
-            searchStandings(params.seasonId)
-        }
-
-        // We search for standings if it pass too many time from last searched
-        params.lastStandingCheck?.let {
-            if (DateClass().minutesBetweenNowAndDate(it) > params.standingsCheckTime) {
-                searchStandings(params.seasonId)
-            }
-        }
-    }
-
     private suspend fun getTeams(params: Params) {
         params.seasonId?.let {
             val standings = firestoreParams.getStandings(it)
@@ -71,18 +51,6 @@ class MainRepoImpl(
                         }
                     }
                 }
-            }
-        }
-    }
-
-    private suspend fun getMatches(params: Params) {
-        if (params.lastMatchCheck == null) {
-            searchMatches(params.seasonId)
-        }
-
-        params.lastMatchCheck?.let {
-            if (DateClass().minutesBetweenNowAndDate(it) > params.matchesCheckTime) {
-                searchMatches(params.seasonId)
             }
         }
     }
@@ -101,38 +69,4 @@ class MainRepoImpl(
         return seasonList[0].season_id
     }
 
-
-    private suspend fun searchStandings(seasonId: Int?) {
-        if (seasonId == null) {
-            throw Exception("No data")
-        }
-
-        val dataStandings = dataWSSource.getStandings(seasonId).dataStandings
-
-        // Delete standingList from firestore with document = seasonId
-        firestoreParams.deleteStandings(seasonId)
-
-        // Write standingList with document = seasonId
-        firestoreParams.writeStandings(seasonId, dataStandings)
-
-        // Update lastStandingCheck from params
-        firestoreParams.updateStandingCheck()
-    }
-
-    private suspend fun searchMatches(seasonId: Int?) {
-        if (seasonId == null) {
-            throw Exception("No data")
-        }
-
-        val dataMatches = dataWSSource.getMatches(seasonId)
-
-        // Delete Matches from firestore with document = seasonId
-        firestoreParams.deleteMatches(seasonId)
-
-        // Write matches with document = seasonId
-        firestoreParams.writeMatches(seasonId, dataMatches)
-
-        // Update lastMatchCheck from params
-        firestoreParams.updateMatchCheck()
-    }
 }
